@@ -68,5 +68,12 @@
     "description": "Submit button appears to work but data not stored",
     "severity": 4,
     "createdAt": 1717339542000
+  },
+  {
+    "title": "LoginButtonBroken",
+    "severity": 2,
+    "description": "Button_does_not_trigger_login_event",
+    "createdAt": "2025-10-30T14:19:15.433Z",
+    "_id": "fiyoim04"
   }
 ]

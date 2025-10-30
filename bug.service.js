@@ -43,7 +43,9 @@ function save(bug) {
   if (bug._id) {
     // update
     const idx = bugs.findIndex((b) => b._id === bug._id);
-    if (idx === -1) return Promise.resolve(null);
+    if (idx === -1) {
+      return new Error('not found');
+    }
     bugs[idx] = bug;
   } else {
     // create
