@@ -1,13 +1,5 @@
 [
   {
-    "_id": "f3b92ac1",
-    "title": "User session expires too quickly",
-    "description": "Session times out after 2 minutes",
-    "severity": 4,
-    "createdAt": 1698710021000,
-    "labels": ["bug-blocker", "pending-review", "security-check"]
-  },
-  {
     "_id": "91aa7e0d",
     "title": "Search returns no results",
     "description": "Typing in search bar gives empty response",

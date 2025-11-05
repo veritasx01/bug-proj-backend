@@ -39,21 +39,21 @@ function remove(bugId) {
   return Promise.resolve();
 }
 
-function save(bug) {
-  if (bug._id) {
-    // update
-    const idx = bugs.findIndex((b) => b._id === bug._id);
-    if (idx === -1) {
-      return new Error('not found');
+async function save(bugToSave) {
+  try {
+    if (bugToSave._id) {
+      const idx = bugs.findIndex((bug) => bug._id === bugToSave._id);
+      if (idx === -1) throw `Couldn't update bug with _id ${bugToSave._id}`;
+      bugs[idx] = bugToSave;
+    } else {
+      bugToSave._id = _makeId();
+      bugs.push(bugToSave);
     }
-    bugs[idx] = bug;
-  } else {
-    // create
-    bug._id = _makeId();
-    bugs.push(bug);
+    await _saveBugsToFile();
+    return bugToSave;
+  } catch (err) {
+    throw err;
   }
-  _saveBugs();
-  return Promise.resolve(bug);
 }
 
 export function _makeId(length = 8) {
@@ -63,4 +63,14 @@ export function _makeId(length = 8) {
     id += chars[Math.floor(Math.random() * chars.length)];
   }
   return id;
+}
+
+function _saveBugsToFile(path = './data/bugs.json') {
+  return new Promise((resolve, reject) => {
+    const data = JSON.stringify(bugs, null, 4);
+    fs.writeFile(path, data, (err) => {
+      if (err) return reject(err);
+      resolve();
+    });
+  });
 }
