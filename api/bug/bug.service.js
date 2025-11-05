@@ -1,7 +1,5 @@
 import fs from 'fs';
 
-const STORAGE_FILE = './data/bugs.json';
-
 export const bugService = {
   query,
   getById,
@@ -9,33 +7,68 @@ export const bugService = {
   remove,
 };
 
-let bugs = _loadBugs();
-
-function _loadBugs() {
-  try {
-    const data = fs.readFileSync(STORAGE_FILE, 'utf-8');
-    return JSON.parse(data);
-  } catch (err) {
-    return [];
-  }
-}
+let bugs = readJsonFile('./data/bugs.json');
+const PAGE_SIZE = 10;
 
 function _saveBugs() {
   fs.writeFileSync(STORAGE_FILE, JSON.stringify(bugs, null, 2));
 }
 
-function query() {
-  return Promise.resolve([...bugs]); // return shallow copy
+function query(filterBy = {}, sortBy = '', sortDir = 1) {
+  let bugsToDisplay = bugs;
+  try {
+    if (filterBy.title) {
+      const regExp = new RegExp(filterBy.title, 'i');
+      bugsToDisplay = bugsToDisplay.filter((bug) => regExp.test(bug.title));
+    }
+
+    if (filterBy.minSeverity) {
+      bugsToDisplay = bugsToDisplay.filter(
+        (bug) => bug.severity >= minSeverity
+      );
+    }
+
+    if (filterBy.labels) {
+      bugsToDisplay = bugsToDisplay.filter((bug) =>
+        filterBy.labels.some((lbl) => bug.labels.includes(lbl))
+      );
+    }
+
+    if (sortBy === 'title') {
+      bugsToDisplay.sort((a, b) => a.title.localeCompare(b.title));
+    } else if (sortBy === 'severity') {
+      bugsToDisplay.sort((a, b) => a.severity - b.severity);
+    } else if (sortBy === 'sortDir' && sortDir != 0) {
+      bugsToDisplay = bugsToDisplay.sort(
+        (a, b) => sortDir * (a.createdAt - b.createdAt)
+      );
+    }
+
+    if ('pageIdx' in filterBy) {
+      const startIdx = filterBy.pageIdx * PAGE_SIZE;
+      bugsToDisplay = bugsToDisplay.slice(startIdx, startIdx + PAGE_SIZE);
+    }
+
+    return bugsToDisplay;
+  } catch (err) {
+    loggerService.error(`Couldn't get bugs`, err);
+    throw err;
+  }
 }
 
-function getById(bugId) {
-  const bug = bugs.find((b) => b._id === bugId);
-  return Promise.resolve(bug);
+async function getById(bugId) {
+  try {
+    const bug = bugs.find((b) => b._id === bugId);
+    if (!bug) throw `couldn't find bug with id: ${bugId}`;
+    return bug;
+  } catch (err) {
+    throw err;
+  }
 }
 
-function remove(bugId) {
+async function remove(bugId) {
   bugs = bugs.filter((b) => b._id !== bugId);
-  _saveBugs();
+  await _saveBugsToFile();
   return Promise.resolve();
 }
 
@@ -73,4 +106,10 @@ function _saveBugsToFile(path = './data/bugs.json') {
       resolve();
     });
   });
+}
+
+export function readJsonFile(path) {
+  const str = fs.readFileSync(path, 'utf8');
+  const json = JSON.parse(str);
+  return json;
 }

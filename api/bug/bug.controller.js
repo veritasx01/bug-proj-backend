@@ -14,8 +14,11 @@ const LABELS = [
 ];
 
 export async function getBugs(req, res) {
+  const { title, severity, sortBy, sortDir, labels } = req.query;
+  const filterBy = { title, severity, labels };
+  if (!sortDir) sortDir = 0;
   try {
-    const bugs = await bugService.query();
+    const bugs = await bugService.query(filterBy, sortBy, sortDir);
     res.send(bugs);
   } catch (err) {
     res.status(400).send('Cannot get bugs');
@@ -81,12 +84,12 @@ export async function addBug(req, res) {
     labels = [],
   } = req.params;
   const bugToSave = { title, severity, description, createdAt, labels };
-  console.log(bugToSave)
+  console.log(bugToSave);
   try {
     const savedBug = await bugService.save(bugToSave);
     res.send(savedBug);
   } catch (err) {
-    console.log(err)
+    console.log(err);
     res.status(400).send('Cannot save bug');
   }
 }
