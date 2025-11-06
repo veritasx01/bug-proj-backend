@@ -29,16 +29,21 @@ function query(filterBy = {}, sortBy = '', sortDir = 1) {
     }
 
     if (filterBy.labels) {
-      bugsToDisplay = bugsToDisplay.filter((bug) =>
-        filterBy.labels.some((lbl) => bug.labels.includes(lbl))
-      );
+      const safeLabels = Array.isArray(filterBy.labels)
+        ? filterBy.labels
+        : [filterBy.labels];
+      if (safeLabels.length != 0) {
+        bugsToDisplay = bugsToDisplay.filter((bug) =>
+          safeLabels.some((lbl) => bug.labels.includes(lbl))
+        );
+      }
     }
 
     if (sortBy === 'title') {
-      bugsToDisplay.sort((a, b) => a.title.localeCompare(b.title));
+      bugsToDisplay.sort((a, b) => sortDir * a.title.localeCompare(b.title));
     } else if (sortBy === 'severity') {
-      bugsToDisplay.sort((a, b) => a.severity - b.severity);
-    } else if (sortBy === 'sortDir' && sortDir != 0) {
+      bugsToDisplay.sort((a, b) => sortDir * (a.severity - b.severity));
+    } else if (sortBy === 'createdAt') {
       bugsToDisplay = bugsToDisplay.sort(
         (a, b) => sortDir * (a.createdAt - b.createdAt)
       );
@@ -51,7 +56,7 @@ function query(filterBy = {}, sortBy = '', sortDir = 1) {
 
     return bugsToDisplay;
   } catch (err) {
-    loggerService.error(`Couldn't get bugs`, err);
+    console.log(err);
     throw err;
   }
 }

@@ -14,8 +14,10 @@ const LABELS = [
 ];
 
 export async function getBugs(req, res) {
-  const { title, severity, sortBy, sortDir, labels } = req.query;
-  const filterBy = { title, severity, labels };
+  const { title, severity, sortBy } = req.query;
+  let { labels, sortDir = 1 } = req.query;
+  const filterBy = { title, severity: severity, labels };
+  console.log(`${filterBy}, ${sortBy}, ${sortDir}`);
   if (!sortDir) sortDir = 0;
   try {
     const bugs = await bugService.query(filterBy, sortBy, sortDir);
@@ -84,7 +86,6 @@ export async function addBug(req, res) {
     labels = [],
   } = req.params;
   const bugToSave = { title, severity, description, createdAt, labels };
-  console.log(bugToSave);
   try {
     const savedBug = await bugService.save(bugToSave);
     res.send(savedBug);
