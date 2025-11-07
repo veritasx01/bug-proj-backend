@@ -8,7 +8,7 @@ export const bugService = {
 };
 
 let bugs = readJsonFile('./data/bugs.json');
-const PAGE_SIZE = 10;
+const PAGE_SIZE = 3;
 
 function _saveBugs() {
   fs.writeFileSync(STORAGE_FILE, JSON.stringify(bugs, null, 2));
@@ -49,7 +49,9 @@ function query(filterBy = {}, sortBy = '', sortDir = 1) {
       );
     }
 
-    if ('pageIdx' in filterBy) {
+    if ('pageIdx' in filterBy && filterBy.pageIdx) {
+      console.log(filterBy.pageIdx)
+      console.log(bugsToDisplay)
       const startIdx = filterBy.pageIdx * PAGE_SIZE;
       bugsToDisplay = bugsToDisplay.slice(startIdx, startIdx + PAGE_SIZE);
     }
