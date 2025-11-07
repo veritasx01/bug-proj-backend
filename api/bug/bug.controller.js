@@ -14,9 +14,9 @@ const LABELS = [
 ];
 
 export async function getBugs(req, res) {
-  const { title, severity, sortBy, pageIdx } = req.query;
-  let { labels, sortDir = 1 } = req.query;
-  const filterBy = { title, severity: severity, labels, pageIdx };
+  const { title, minSeverity, sortBy, pageIdx } = req.query;
+  let { labels = [], sortDir = 0 } = req.query;
+  const filterBy = { title, minSeverity, labels, pageIdx };
   try {
     const bugs = await bugService.query(filterBy, sortBy, sortDir);
     res.send(bugs);

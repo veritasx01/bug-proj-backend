@@ -24,7 +24,7 @@ function query(filterBy = {}, sortBy = '', sortDir = 1) {
 
     if (filterBy.minSeverity) {
       bugsToDisplay = bugsToDisplay.filter(
-        (bug) => bug.severity >= minSeverity
+        (bug) => bug.severity >= filterBy.minSeverity
       );
     }
 
@@ -47,6 +47,8 @@ function query(filterBy = {}, sortBy = '', sortDir = 1) {
       bugsToDisplay = bugsToDisplay.sort(
         (a, b) => sortDir * (a.createdAt - b.createdAt)
       );
+    } else {
+      bugsToDisplay.sort((a, b) => a.title.localeCompare(b.title));
     }
 
     if ('pageIdx' in filterBy && filterBy.pageIdx) {
