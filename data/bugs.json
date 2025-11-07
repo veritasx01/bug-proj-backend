@@ -2,8 +2,8 @@
   {
     "_id": "91aa7e0d",
     "title": "Search returns no results",
-    "description": "Typing in search bar gives empty response",
-    "severity": 2,
+    "description": "Typing in search bar gives empty response.",
+    "severity": "1",
     "createdAt": 1702453204000,
     "labels": [
       "feature-request",
