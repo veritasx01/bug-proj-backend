@@ -5,7 +5,11 @@
     "description": "Typing in search bar gives empty response",
     "severity": 2,
     "createdAt": 1702453204000,
-    "labels": ["feature-request", "refactor", "staging"]
+    "labels": [
+      "feature-request",
+      "refactor",
+      "staging"
+    ]
   },
   {
     "_id": "bc41d098",
@@ -13,7 +17,11 @@
     "description": "Crash immediately after splash screen",
     "severity": 5,
     "createdAt": 1685210973000,
-    "labels": ["hotfix", "bug-blocker", "merge-ready"]
+    "labels": [
+      "hotfix",
+      "bug-blocker",
+      "merge-ready"
+    ]
   },
   {
     "_id": "7e4d9f2c",
@@ -21,7 +29,11 @@
     "description": "UI overlap when receiving alerts",
     "severity": 1,
     "createdAt": 1710015629000,
-    "labels": ["pending-review", "refactor", "staging"]
+    "labels": [
+      "pending-review",
+      "refactor",
+      "staging"
+    ]
   },
   {
     "_id": "ad229b44",
@@ -29,7 +41,11 @@
     "description": "Fields accept invalid email format",
     "severity": 3,
     "createdAt": 1706128125000,
-    "labels": ["security-check", "unit-tests", "merge-ready"]
+    "labels": [
+      "security-check",
+      "unit-tests",
+      "merge-ready"
+    ]
   },
   {
     "_id": "2b8c6f7a",
@@ -37,7 +53,11 @@
     "description": "Dashboard takes 12 seconds to load",
     "severity": 2,
     "createdAt": 1693427720000,
-    "labels": ["refactor", "staging", "unit-tests"]
+    "labels": [
+      "refactor",
+      "staging",
+      "unit-tests"
+    ]
   },
   {
     "_id": "c49ff8e3",
@@ -45,7 +65,11 @@
     "description": "No email after submitting reset request",
     "severity": 4,
     "createdAt": 1720201218000,
-    "labels": ["bug-blocker", "hotfix", "pending-review"]
+    "labels": [
+      "bug-blocker",
+      "hotfix",
+      "pending-review"
+    ]
   },
   {
     "_id": "57de99a8",
@@ -53,7 +77,11 @@
     "description": "Theme flashes between light and dark",
     "severity": 1,
     "createdAt": 1689345023000,
-    "labels": ["merge-ready", "refactor", "feature-request"]
+    "labels": [
+      "merge-ready",
+      "refactor",
+      "feature-request"
+    ]
   },
   {
     "_id": "e89f53db",
@@ -61,7 +89,11 @@
     "description": "Zoom controls unresponsive",
     "severity": 3,
     "createdAt": 1695572180000,
-    "labels": ["unit-tests", "hotfix", "security-check"]
+    "labels": [
+      "unit-tests",
+      "hotfix",
+      "security-check"
+    ]
   },
   {
     "_id": "3fa612ce",
@@ -69,6 +101,10 @@
     "description": "Submit button appears to work but data not stored",
     "severity": 4,
     "createdAt": 1717339542000,
-    "labels": ["pending-review", "bug-blocker", "refactor"]
+    "labels": [
+      "pending-review",
+      "bug-blocker",
+      "refactor"
+    ]
   }
 ]

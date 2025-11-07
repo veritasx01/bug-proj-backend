@@ -14,12 +14,9 @@ app.use(cors(corsOptions));
 app.use(cookieParser());
 app.use(express.static('public'));
 app.use(express.json());
+app.use('/api/bug', bugRoutes);
 app.set('query parser', 'extended');
 
-app.use('/api/bug', bugRoutes);
 
-app.get('/*all', (req, res) => {
-    res.sendFile(path.resolve('public/index.html'))
-})
 
 app.listen(3030, () => console.log('Server ready at port 3030'));

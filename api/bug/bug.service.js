@@ -11,7 +11,7 @@ let bugs = readJsonFile('./data/bugs.json');
 const PAGE_SIZE = 3;
 
 function _saveBugs() {
-  fs.writeFileSync(STORAGE_FILE, JSON.stringify(bugs, null, 2));
+  fs.writeFileSync(STORAGE_FILE, JSON.stringify(bugs, null, 4));
 }
 
 function query(filterBy = {}, sortBy = '', sortDir = 1) {
@@ -50,8 +50,8 @@ function query(filterBy = {}, sortBy = '', sortDir = 1) {
     }
 
     if ('pageIdx' in filterBy && filterBy.pageIdx) {
-      console.log(filterBy.pageIdx)
-      console.log(bugsToDisplay)
+      console.log(filterBy.pageIdx);
+      console.log(bugsToDisplay);
       const startIdx = filterBy.pageIdx * PAGE_SIZE;
       bugsToDisplay = bugsToDisplay.slice(startIdx, startIdx + PAGE_SIZE);
     }
@@ -84,7 +84,7 @@ async function save(bugToSave) {
     if (bugToSave._id) {
       const idx = bugs.findIndex((bug) => bug._id === bugToSave._id);
       if (idx === -1) throw `Couldn't update bug with _id ${bugToSave._id}`;
-      bugs[idx] = bugToSave;
+      bugs[idx] = { ...bugs[idx], ...bugToSave };
     } else {
       bugToSave._id = _makeId();
       bugs.push(bugToSave);
@@ -107,7 +107,7 @@ export function _makeId(length = 8) {
 
 function _saveBugsToFile(path = './data/bugs.json') {
   return new Promise((resolve, reject) => {
-    const data = JSON.stringify(bugs, null, 4);
+    const data = JSON.stringify(bugs, null, 2);
     fs.writeFile(path, data, (err) => {
       if (err) return reject(err);
       resolve();

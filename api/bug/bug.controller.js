@@ -58,13 +58,13 @@ export async function removeBug(req, res) {
 }
 
 export async function updateBug(req, res) {
+  const {bugId} = req.params;
   const queryObject = req.query;
+  console.log(queryObject);
+
   const incomingBug = {
-    title: queryObject.title || '',
+    _id: bugId,
     severity: +queryObject.severity || 0,
-    description: queryObject.description || '',
-    createdAt: new Date(),
-    labels: queryObject.labels || [],
   };
 
   try {
