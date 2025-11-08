@@ -82,17 +82,19 @@ async function remove(bugId) {
 }
 
 async function save(bugToSave) {
+  const bugExists = false;
   try {
     if (bugToSave._id) {
       const idx = bugs.findIndex((bug) => bug._id === bugToSave._id);
       if (idx === -1) throw `Couldn't update bug with _id ${bugToSave._id}`;
       bugs[idx] = { ...bugs[idx], ...bugToSave };
+      bugExists = true;
     } else {
       bugToSave._id = _makeId();
       bugs.push(bugToSave);
     }
     await _saveBugsToFile();
-    return bugToSave;
+    return [bugToSave, bugExists];
   } catch (err) {
     throw err;
   }

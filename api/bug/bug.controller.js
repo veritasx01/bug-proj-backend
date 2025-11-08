@@ -19,9 +19,9 @@ export async function getBugs(req, res) {
   const filterBy = { title, minSeverity, labels, pageIdx };
   try {
     const bugs = await bugService.query(filterBy, sortBy, sortDir);
-    res.send(bugs);
+    res.status(200).send(bugs);
   } catch (err) {
-    res.status(400).send('Cannot get bugs');
+    res.status(404).send('Cannot get bugs');
   }
 }
 
@@ -35,15 +35,15 @@ export async function getBug(req, res) {
   res.cookie('visitCount', visitCount, { maxAge: 1000 * 7 });
   console.log(visitCount.length);
   if (visitCount.length > 3) {
-    res.status(401).send('Wait for a bit');
+    res.status(429).send('Wait for a bit');
     return;
   }
 
   try {
     const bug = await bugService.getById(bugId);
-    res.send(bug);
+    res.status(200).send(bug);
   } catch (err) {
-    res.status(400).send('Cannot get bug');
+    res.status(404).send('Cannot get bug');
   }
 }
 
@@ -51,9 +51,9 @@ export async function removeBug(req, res) {
   const { bugId } = req.params;
   try {
     await bugService.remove(bugId);
-    res.send('removed');
+    res.status(204).send;
   } catch (err) {
-    res.status(400).send(`Cannot remove bug, id:(${bugId})`);
+    res.status(404).send(`Cannot remove bug, id:(${bugId})`);
   }
 }
 
@@ -68,8 +68,11 @@ export async function updateBug(req, res) {
   };
 
   try {
-    await bugService.save(incomingBug);
-    res.send(incomingBug);
+    // note the method acts like PATCH when the object exists and not like PUT
+    const [_, bugExists] = await bugService.save(incomingBug);
+    if (bugExists)
+      res.status(204).send(); // signal the the resource exists and was updated
+    else res.status(201).send(); // signal the the resource did not exist and the PUT request created it
   } catch (err) {
     res.status(400).send('Cannot save bugs');
   }
@@ -86,7 +89,7 @@ export async function addBug(req, res) {
   const bugToSave = { title, severity, description, createdAt, labels };
   try {
     const savedBug = await bugService.save(bugToSave);
-    res.send(savedBug);
+    res.status(201).send(savedBug);
   } catch (err) {
     console.log(err);
     res.status(400).send('Cannot save bug');
