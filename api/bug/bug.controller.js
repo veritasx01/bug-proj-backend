@@ -1,4 +1,4 @@
-import { _makeId, bugService } from './bug.service.js';
+import { bugService } from './bug.service.js';
 
 const LABELS = [
   'unit-tests',

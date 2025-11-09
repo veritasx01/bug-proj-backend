@@ -9,7 +9,11 @@
       "feature-request",
       "refactor",
       "staging"
-    ]
+    ],
+    "creator": {
+      "_id": "admin_123",
+      "fullname": "admin admin"
+    }
   },
   {
     "_id": "bc41d098",
@@ -21,7 +25,11 @@
       "hotfix",
       "bug-blocker",
       "merge-ready"
-    ]
+    ],
+    "creator": {
+      "_id": "admin_123",
+      "fullname": "admin admin"
+    }
   },
   {
     "_id": "7e4d9f2c",
@@ -33,7 +41,11 @@
       "pending-review",
       "refactor",
       "staging"
-    ]
+    ],
+    "creator": {
+      "_id": "admin_123",
+      "fullname": "admin admin"
+    }
   },
   {
     "_id": "ad229b44",
@@ -45,7 +57,11 @@
       "security-check",
       "unit-tests",
       "merge-ready"
-    ]
+    ],
+    "creator": {
+      "_id": "admin_123",
+      "fullname": "admin admin"
+    }
   },
   {
     "_id": "2b8c6f7a",
@@ -57,7 +73,11 @@
       "refactor",
       "staging",
       "unit-tests"
-    ]
+    ],
+    "creator": {
+      "_id": "admin_123",
+      "fullname": "admin admin"
+    }
   },
   {
     "_id": "c49ff8e3",
@@ -69,7 +89,11 @@
       "bug-blocker",
       "hotfix",
       "pending-review"
-    ]
+    ],
+    "creator": {
+      "_id": "admin_123",
+      "fullname": "admin admin"
+    }
   },
   {
     "_id": "57de99a8",
@@ -81,7 +105,11 @@
       "merge-ready",
       "refactor",
       "feature-request"
-    ]
+    ],
+    "creator": {
+      "_id": "admin_123",
+      "fullname": "admin admin"
+    }
   },
   {
     "_id": "e89f53db",
@@ -93,7 +121,11 @@
       "unit-tests",
       "hotfix",
       "security-check"
-    ]
+    ],
+    "creator": {
+      "_id": "admin_123",
+      "fullname": "admin admin"
+    }
   },
   {
     "_id": "3fa612ce",
@@ -105,6 +137,10 @@
       "pending-review",
       "bug-blocker",
       "refactor"
-    ]
+    ],
+    "creator": {
+      "_id": "admin_123",
+      "fullname": "admin admin"
+    }
   }
 ]

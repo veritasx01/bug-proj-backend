@@ -1,4 +1,5 @@
 import fs from 'fs';
+import { makeId } from '../utils/idUtils.js';
 
 export const bugService = {
   query,
@@ -10,9 +11,6 @@ export const bugService = {
 let bugs = readJsonFile('./data/bugs.json');
 const PAGE_SIZE = 3;
 
-function _saveBugs() {
-  fs.writeFileSync(STORAGE_FILE, JSON.stringify(bugs, null, 4));
-}
 
 function query(filterBy = {}, sortBy = '', sortDir = 1) {
   let bugsToDisplay = bugs;
@@ -90,7 +88,7 @@ async function save(bugToSave) {
       bugs[idx] = { ...bugs[idx], ...bugToSave };
       bugExists = true;
     } else {
-      bugToSave._id = _makeId();
+      bugToSave._id = makeId();
       bugs.push(bugToSave);
     }
     await _saveBugsToFile();
@@ -98,15 +96,6 @@ async function save(bugToSave) {
   } catch (err) {
     throw err;
   }
-}
-
-export function _makeId(length = 8) {
-  const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
-  let id = '';
-  while (length--) {
-    id += chars[Math.floor(Math.random() * chars.length)];
-  }
-  return id;
 }
 
 function _saveBugsToFile(path = './data/bugs.json') {
