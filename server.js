@@ -1,7 +1,9 @@
+import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import { bugRoutes } from './api/bug/bug.routes.js';
 import cookieParser from 'cookie-parser';
+import { userRoutes } from './api/user/user.routes.js';
 
 const app = express();
 
@@ -15,8 +17,7 @@ app.use(cookieParser());
 app.use(express.static('public'));
 app.use(express.json());
 app.use('/api/bug', bugRoutes);
+app.use('/api/auth', userRoutes);
 app.set('query parser', 'extended');
-
-
-
-app.listen(3030, () => console.log('Server ready at port 3030'));
+const port = process.env.PORT;
+app.listen(port, () => console.log(`Server ready at port ${port}`));

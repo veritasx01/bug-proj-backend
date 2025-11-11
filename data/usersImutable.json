@@ -4,11 +4,5 @@
     "fullname": "admin admin",
     "username": "admin",
     "passwordHash": ""
-  },
-  {
-    "_id": "1x5g1xuq",
-    "username": "test",
-    "fullname": "test",
-    "passwordHash": "test"
   }
 ]
