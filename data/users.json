@@ -3,12 +3,20 @@
     "_id": "admin_123",
     "fullname": "admin admin",
     "username": "admin",
-    "passwordHash": ""
+    "passwordHash": "$2b$10$Yz9NAsJfkbyD/Ou57eJnJO2uJ3m6.3f50rf9cWUwnZTkFCkn9Ce7C"
+    "isAdmin": true
   },
   {
     "_id": "1x5g1xuq",
     "username": "test",
     "fullname": "test",
-    "passwordHash": "test"
+    "passwordHash": "test",
+    "isAdmin": false
+  },
+  {
+    "_id": "x5evj6w4",
+    "username": "test1",
+    "passwordHash": "$2b$10$m/CL1PadPhGK37Rp8Tlkoe9gSAtt0pFIrGpMyJhCuvv1L.UotMAae",
+    "isAdmin": false
   }
 ]

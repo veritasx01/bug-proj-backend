@@ -142,5 +142,31 @@
       "_id": "admin_123",
       "fullname": "admin admin"
     }
+  },
+  {
+    "title": "",
+    "severity": "",
+    "description": "",
+    "createdAt": "2025-11-12T07:19:22.621Z",
+    "labels": [],
+    "creator": "x5evj6w4",
+    "_id": "d1sihi1i"
+  },
+  {
+    "createdAt": "2025-11-12T07:20:08.833Z",
+    "creator": "x5evj6w4",
+    "_id": "m5hval4c"
+  },
+  {
+    "title": "Crash on save",
+    "severity": 5,
+    "description": "App crashes when saving bug",
+    "createdAt": "2025-11-12T07:21:48.526Z",
+    "labels": [
+      "urgent",
+      "backend"
+    ],
+    "creator": "x5evj6w4",
+    "_id": "56opneug"
   }
 ]

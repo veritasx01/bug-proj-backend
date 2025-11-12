@@ -1,7 +1,9 @@
 import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt';
 import { makeId } from '../utils/idUtils.js';
 import { userService } from './user.service.js';
 
+const saltRounds = 10;
 function hashPassword(password) {
   return password;
 }
@@ -13,22 +15,26 @@ export async function signupUser(req, res) {
     _id: makeId(),
     username,
     fullname,
-    passwordHash: hashPassword(password),
+    passwordHash: await bcrypt.hash(password, saltRounds),
   };
 
   try {
     await userService.createUser(user);
-    res.status(201).send('user created successfully');
+    res.status(201).send({ message: 'user created successfully' });
   } catch (err) {
-    res.status(422).send(`malformed request for signup: ${err}`); // add validation in the future
+    res.status(422).send({ error: `malformed request for signup: ${err}` }); // add validation in the future
   }
 }
 
 export async function loginUser(req, res) {
   const { username, password } = req.body;
   const user = await userService.getByUsername(username);
-  console.log(user, user?.password);
-  if (!user || user.passwordHash !== hashPassword(password)) {
+  if (!user) {
+    return res.status(401).send({ error: 'Invalid credentials' });
+  }
+
+  const isMatch = await bcrypt.compare(password, user.passwordHash);
+  if (isMatch) {
     return res.status(401).send({ error: 'Invalid credentials' });
   }
 
