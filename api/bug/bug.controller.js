@@ -50,7 +50,8 @@ export async function getBug(req, res) {
 export async function removeBug(req, res) {
   try {
     const { bugId } = req.params;
-    if (bug.creator !== req.user._id) {
+    const isAdmin = req.user.isAdmin;
+    if (!isAdmin && bug.creator !== req.user._id) {
       return res.status(403).send({ error: 'Not authorized' });
     }
     const bug = await getById(bugId);
@@ -67,6 +68,12 @@ export async function updateBug(req, res) {
   const { title, description, severity, labels } = req.query;
   const queryObject = { title, description, severity, labels };
   let incomingBug = await bugService.getById(bugId);
+  const isAdmin = req.user.isAdmin;
+
+  if (!isAdmin && incomingBug.creator !== req.user._id) {
+    return res.status(403).send({ error: 'Not authorized' });
+  }
+
   if (!incomingBug) {
     return res.status(404).send({
       error: `the bug that was requested for updating does not exist id: ${bugId}`,

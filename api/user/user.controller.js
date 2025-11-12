@@ -16,6 +16,7 @@ export async function signupUser(req, res) {
     username,
     fullname,
     passwordHash: await bcrypt.hash(password, saltRounds),
+    isAdmin: false,
   };
 
   try {

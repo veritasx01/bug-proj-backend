@@ -3,7 +3,7 @@
     "_id": "admin_123",
     "fullname": "admin admin",
     "username": "admin",
-    "passwordHash": "$2b$10$Yz9NAsJfkbyD/Ou57eJnJO2uJ3m6.3f50rf9cWUwnZTkFCkn9Ce7C"
+    "passwordHash": "$2b$10$Yz9NAsJfkbyD/Ou57eJnJO2uJ3m6.3f50rf9cWUwnZTkFCkn9Ce7C",
     "isAdmin": true
   },
   {
