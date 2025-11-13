@@ -1,101 +1,82 @@
-import fs from 'fs';
-import { makeId } from '../utils/idUtils.js';
+import { utilService } from '../../services/util.service.js';
+import { loggerService } from '../../services/logger.service.js';
+
+const users = utilService.readJsonFile('./data/users.json');
 
 export const userService = {
   query,
   getById,
-  getByUsername,
-  createUser,
   remove,
+  save,
+  getByUsername,
+  update,
 };
 
-let users = readJsonFile('./data/users.json');
-
-function query(filterBy = {}) {
-  let usersToDisplay = users;
-  try {
-    return usersToDisplay;
-  } catch (err) {
-    console.log(err);
-    throw err;
-  }
+async function query() {
+  return users;
 }
 
 async function getById(userId) {
   try {
-    const user = users.find((u) => u._id === userId);
-    if (!user) throw `couldn't find user with id: ${userId}`;
+    const user = users.find((user) => user._id === userId);
+    if (!user) throw `User not found by userId : ${userId}`;
     return user;
   } catch (err) {
+    loggerService.error('userService[getById] : ', err);
     throw err;
   }
 }
 
 async function getByUsername(username) {
   try {
-    const user = users.find((u) => u.username === username);
-    if (!user) throw `couldn't find user with username: ${username}`;
+    const user = users.find((user) => user.username === username);
     return user;
   } catch (err) {
+    loggerService.error('userService[getByUsername] : ', err);
     throw err;
   }
 }
 
 async function remove(userId) {
-  users = users.filter((b) => b._id !== userId);
-  await _saveUsersToFile();
-  return Promise.resolve();
-}
-
-async function createUser(userToCreate) {
   try {
-    if (userToCreate._id) {
-      const idx = users.findIndex(
-        (user) => user.username === userToCreate.username
-      );
-      if (idx !== -1) throw `User with id: ${userToCreate._id} already exists`;
-    } else {
-      userToCreate._id = makeId();
-    }
-    users.push(userToCreate);
+    const idx = users.findIndex((user) => user._id === userId);
+    if (idx === -1) throw `Couldn't find user with _id ${causerIdrId}`;
+
+    users.splice(idx, 1);
     await _saveUsersToFile();
   } catch (err) {
-    throw err;
-  }
-  return userToCreate;
-}
-
-async function save(userToSave) {
-  const userExists = false;
-  try {
-    if (userToSave._id) {
-      const idx = users.findIndex((user) => user._id === userToSave._id);
-      if (idx === -1) throw `Couldn't update user with _id ${userToSave._id}`;
-      users[idx] = { ...users[idx], ...userToSave };
-      userExists = true;
-    } else {
-      userToSave._id = makeId();
-      users.push(userToSave);
-    }
-    await _saveUsersToFile();
-    return [userToSave, userExists];
-  } catch (err) {
+    loggerService.error('userService[remove] : ', err);
     throw err;
   }
 }
 
-function _saveUsersToFile(path = './data/users.json') {
-  return new Promise((resolve, reject) => {
-    const data = JSON.stringify(users, null, 2);
-    fs.writeFile(path, data, (err) => {
-      if (err) return reject(err);
-      resolve();
-    });
-  });
+async function save(user) {
+  // Only handles user ADD for now
+  try {
+    user._id = utilService.makeId();
+    user.score = 10000;
+    user.createdAt = Date.now();
+    if (!user.imgUrl)
+      user.imgUrl =
+        'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png';
+
+    users.push(user);
+
+    await _saveUsersToFile();
+    return user;
+  } catch (err) {
+    loggerService.error('userService[save] : ', err);
+    throw err;
+  }
 }
 
-export function readJsonFile(path) {
-  const str = fs.readFileSync(path, 'utf8');
-  const json = JSON.parse(str);
-  return json;
+function update(updatedUser) {
+  const idx = users.findIndex((user) => user._id === updatedUser._id);
+  if (idx === -1) throw `user not found, id: ${updatedUser._id}`;
+  users[idx] = updatedUser;
+  return updatedUser;
+}
+
+function _saveUsersToFile() {
+  return utilService.writeJsonFile('data/user.json', users);
 }
