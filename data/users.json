@@ -1,17 +1,10 @@
 [
   {
-    "_id": "admin_123",
-    "fullname": "admin admin",
+    "_id": "pmlmggac",
     "username": "admin",
-    "passwordHash": "$2b$10$Yz9NAsJfkbyD/Ou57eJnJO2uJ3m6.3f50rf9cWUwnZTkFCkn9Ce7C",
+    "fullname": "admin admin",
+    "passwordHash": "$2b$10$HAGJZx4vgXdbWgv3o3CFVutaJmf8BvT5liER9vlKnLoJYP7qcndVa",
     "isAdmin": true
-  },
-  {
-    "_id": "1x5g1xuq",
-    "username": "test",
-    "fullname": "test",
-    "passwordHash": "test",
-    "isAdmin": false
   },
   {
     "_id": "x5evj6w4",

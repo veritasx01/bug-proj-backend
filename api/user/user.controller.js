@@ -35,11 +35,15 @@ export async function loginUser(req, res) {
   }
 
   const isMatch = await bcrypt.compare(password, user.passwordHash);
-  if (isMatch) {
+  if (!isMatch) {
     return res.status(401).send({ error: 'Invalid credentials' });
   }
 
-  const miniUser = { _id: user._id, username: user.username };
+  const miniUser = {
+    _id: user._id,
+    fullname: user.fullname,
+    username: user.username,
+  };
   const loginToken = jwt.sign(miniUser, process.env.JWT_SECRET, {
     expiresIn: '2h',
   });

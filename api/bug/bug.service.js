@@ -50,8 +50,6 @@ function query(filterBy = {}, sortBy = '', sortDir = 1) {
     }
 
     if ('pageIdx' in filterBy && filterBy.pageIdx) {
-      console.log(filterBy.pageIdx);
-      console.log(bugsToDisplay);
       const startIdx = filterBy.pageIdx * PAGE_SIZE;
       bugsToDisplay = bugsToDisplay.slice(startIdx, startIdx + PAGE_SIZE);
     }

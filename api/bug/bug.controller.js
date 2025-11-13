@@ -101,7 +101,7 @@ export async function addBug(req, res) {
     createdAt = new Date(),
     labels,
   } = req.body;
-  const creator = req.user._id;
+  const creator = { _id: req.user._id, fullname: req.user.fullname };
   const bugToSave = {
     title,
     severity,
