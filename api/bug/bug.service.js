@@ -11,7 +11,6 @@ export const bugService = {
 let bugs = readJsonFile('./data/bugs.json');
 const PAGE_SIZE = 3;
 
-
 function query(filterBy = {}, sortBy = '', sortDir = 1) {
   let bugsToDisplay = bugs;
   try {
@@ -38,7 +37,11 @@ function query(filterBy = {}, sortBy = '', sortDir = 1) {
     }
 
     if (sortBy === 'title') {
-      bugsToDisplay.sort((a, b) => sortDir * a.title.localeCompare(b.title));
+      bugsToDisplay.sort((a, b) => {
+        const titleA = a?.title ?? ''; // fallback to empty string if null/undefined
+        const titleB = b?.title ?? '';
+        return sortDir * titleA.localeCompare(titleB);
+      });
     } else if (sortBy === 'severity') {
       bugsToDisplay.sort((a, b) => sortDir * (a.severity - b.severity));
     } else if (sortBy === 'createdAt') {
@@ -46,7 +49,11 @@ function query(filterBy = {}, sortBy = '', sortDir = 1) {
         (a, b) => sortDir * (a.createdAt - b.createdAt)
       );
     } else {
-      bugsToDisplay.sort((a, b) => a.title.localeCompare(b.title));
+      bugsToDisplay.sort((a, b) => {
+        const titleA = a?.title ?? ''; // fallback to empty string if null/undefined
+        const titleB = b?.title ?? '';
+        return titleA.localeCompare(titleB);
+      });
     }
 
     if ('pageIdx' in filterBy && filterBy.pageIdx) {

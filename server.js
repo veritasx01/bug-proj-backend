@@ -1,6 +1,7 @@
 import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
+import path from 'path';
 import { bugRoutes } from './api/bug/bug.routes.js';
 import cookieParser from 'cookie-parser';
 import { authRoutes } from './api/auth/auth.routes.js';
@@ -14,12 +15,16 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
+app.use(express.static('dist'));
 app.use(cookieParser());
-app.use(express.static('public'));
 app.use(express.json());
+app.set('query parser', 'extended');
+
 app.use('/api/bug', bugRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);
-app.set('query parser', 'extended');
+app.get('/{*any}', (req, res) => {
+  res.sendFile(path.resolve('dist/index.html'));
+});
 const port = process.env.PORT;
 app.listen(port, () => console.log(`Server ready at port ${port}`));
