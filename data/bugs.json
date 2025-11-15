@@ -1,19 +1,23 @@
 [
   {
-    "_id": "91aa7e0d",
-    "title": "Search returns no results",
-    "description": "Typing in search bar gives empty response.",
-    "severity": "1",
-    "createdAt": 1702453204000,
-    "labels": [
-      "feature-request",
-      "refactor",
-      "staging"
-    ],
+    "title": "",
+    "severity": "",
+    "description": "",
+    "createdAt": "2025-11-12T07:19:22.621Z",
+    "labels": [],
     "creator": {
-      "_id": "admin_123",
-      "fullname": "admin admin"
-    }
+      "_id": "x5evj6w4",
+      "fullname": "admin"
+    },
+    "_id": "d1sihi1i"
+  },
+  {
+    "createdAt": "2025-11-12T07:20:08.833Z",
+    "creator": {
+      "_id": "x5evj6w4",
+      "fullname": "admin"
+    },
+    "_id": "m5hval4c"
   },
   {
     "_id": "bc41d098",
@@ -25,102 +29,6 @@
       "hotfix",
       "bug-blocker",
       "merge-ready"
-    ],
-    "creator": {
-      "_id": "admin_123",
-      "fullname": "admin admin"
-    }
-  },
-  {
-    "_id": "7e4d9f2c",
-    "title": "Notification banner overlaps header",
-    "description": "UI overlap when receiving alerts",
-    "severity": 1,
-    "createdAt": 1710015629000,
-    "labels": [
-      "pending-review",
-      "refactor",
-      "staging"
-    ],
-    "creator": {
-      "_id": "admin_123",
-      "fullname": "admin admin"
-    }
-  },
-  {
-    "_id": "ad229b44",
-    "title": "Form validation not working",
-    "description": "Fields accept invalid email format",
-    "severity": 3,
-    "createdAt": 1706128125000,
-    "labels": [
-      "security-check",
-      "unit-tests",
-      "merge-ready"
-    ],
-    "creator": {
-      "_id": "admin_123",
-      "fullname": "admin admin"
-    }
-  },
-  {
-    "_id": "2b8c6f7a",
-    "title": "Slow loading dashboard",
-    "description": "Dashboard takes 12 seconds to load",
-    "severity": 2,
-    "createdAt": 1693427720000,
-    "labels": [
-      "refactor",
-      "staging",
-      "unit-tests"
-    ],
-    "creator": {
-      "_id": "admin_123",
-      "fullname": "admin admin"
-    }
-  },
-  {
-    "_id": "c49ff8e3",
-    "title": "Password reset email not sent",
-    "description": "No email after submitting reset request",
-    "severity": 4,
-    "createdAt": 1720201218000,
-    "labels": [
-      "bug-blocker",
-      "hotfix",
-      "pending-review"
-    ],
-    "creator": {
-      "_id": "admin_123",
-      "fullname": "admin admin"
-    }
-  },
-  {
-    "_id": "57de99a8",
-    "title": "Dark mode flickers",
-    "description": "Theme flashes between light and dark",
-    "severity": 1,
-    "createdAt": 1689345023000,
-    "labels": [
-      "merge-ready",
-      "refactor",
-      "feature-request"
-    ],
-    "creator": {
-      "_id": "admin_123",
-      "fullname": "admin admin"
-    }
-  },
-  {
-    "_id": "e89f53db",
-    "title": "Map zoom stuck",
-    "description": "Zoom controls unresponsive",
-    "severity": 3,
-    "createdAt": 1695572180000,
-    "labels": [
-      "unit-tests",
-      "hotfix",
-      "security-check"
     ],
     "creator": {
       "_id": "admin_123",
@@ -144,26 +52,6 @@
     }
   },
   {
-    "title": "",
-    "severity": "",
-    "description": "",
-    "createdAt": "2025-11-12T07:19:22.621Z",
-    "labels": [],
-    "creator": {
-      "_id": "x5evj6w4",
-      "fullname": "admin"
-    },
-    "_id": "d1sihi1i"
-  },
-  {
-    "createdAt": "2025-11-12T07:20:08.833Z",
-    "creator": {
-      "_id": "x5evj6w4",
-      "fullname": "admin"
-    },
-    "_id": "m5hval4c"
-  },
-  {
     "title": "Crash on save",
     "severity": 5,
     "description": "App crashes when saving bug",
@@ -179,16 +67,115 @@
     "_id": "56opneug"
   },
   {
-    "title": "test",
+    "_id": "57de99a8",
+    "title": "Dark mode flickers",
+    "description": "Theme flashes between light and dark",
     "severity": 1,
-    "description": "App crashes",
-    "createdAt": "2025-11-12T08:22:08.651Z",
+    "createdAt": 1689345023000,
     "labels": [
-      "urgent"
+      "merge-ready",
+      "refactor",
+      "feature-request"
     ],
     "creator": {
-      "_id": "x5evj6w4"
-    },
-    "_id": "rhm8qqxl"
+      "_id": "admin_123",
+      "fullname": "admin admin"
+    }
+  },
+  {
+    "_id": "ad229b44",
+    "title": "Form validation not working",
+    "description": "Fields accept invalid email format",
+    "severity": 3,
+    "createdAt": 1706128125000,
+    "labels": [
+      "security-check",
+      "unit-tests",
+      "merge-ready"
+    ],
+    "creator": {
+      "_id": "admin_123",
+      "fullname": "admin admin"
+    }
+  },
+  {
+    "_id": "e89f53db",
+    "title": "Map zoom stuck",
+    "description": "Zoom controls unresponsive",
+    "severity": 3,
+    "createdAt": 1695572180000,
+    "labels": [
+      "unit-tests",
+      "hotfix",
+      "security-check"
+    ],
+    "creator": {
+      "_id": "admin_123",
+      "fullname": "admin admin"
+    }
+  },
+  {
+    "_id": "7e4d9f2c",
+    "title": "Notification banner overlaps header",
+    "description": "UI overlap when receiving alerts",
+    "severity": 1,
+    "createdAt": 1710015629000,
+    "labels": [
+      "pending-review",
+      "refactor",
+      "staging"
+    ],
+    "creator": {
+      "_id": "admin_123",
+      "fullname": "admin admin"
+    }
+  },
+  {
+    "_id": "c49ff8e3",
+    "title": "Password reset email not sent",
+    "description": "No email after submitting reset request",
+    "severity": 4,
+    "createdAt": 1720201218000,
+    "labels": [
+      "bug-blocker",
+      "hotfix",
+      "pending-review"
+    ],
+    "creator": {
+      "_id": "admin_123",
+      "fullname": "admin admin"
+    }
+  },
+  {
+    "_id": "91aa7e0d",
+    "title": "Search returns no results",
+    "description": "Typing in search bar gives empty response.",
+    "severity": "1",
+    "createdAt": 1702453204000,
+    "labels": [
+      "feature-request",
+      "refactor",
+      "staging"
+    ],
+    "creator": {
+      "_id": "admin_123",
+      "fullname": "admin admin"
+    }
+  },
+  {
+    "_id": "2b8c6f7a",
+    "title": "Slow loading dashboard",
+    "description": "Dashboard takes 12 seconds to load",
+    "severity": 2,
+    "createdAt": 1693427720000,
+    "labels": [
+      "refactor",
+      "staging",
+      "unit-tests"
+    ],
+    "creator": {
+      "_id": "admin_123",
+      "fullname": "admin admin"
+    }
   }
 ]

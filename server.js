@@ -10,20 +10,27 @@ import { userRoutes } from './api/user/user.routes.js';
 const app = express();
 
 const corsOptions = {
-  origin: ['http://127.0.0.1:5173', 'http://localhost:5173'],
+  origin: [
+    'http://127.0.0.1:5173',
+    'http://localhost:5173',
+    'https://bug-proj-backend.onrender.com',
+  ],
   credentials: true,
 };
 
+console.log('SERVER BOOTED - ACTIVE FILE:', import.meta.url);
 app.use(cors(corsOptions));
+app.use(express.json());
+app.get('/api/bug/test', (req, res) => res.json({ ok: true }));
 app.use(express.static('dist'));
 app.use(cookieParser());
-app.use(express.json());
 app.set('query parser', 'extended');
 
 app.use('/api/bug', bugRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);
-app.get('/{*any}', (req, res) => {
+
+app.get(/.*/, (req, res) => {
   res.sendFile(path.resolve('dist/index.html'));
 });
 const port = process.env.PORT;

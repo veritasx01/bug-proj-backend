@@ -43,6 +43,7 @@ export async function loginUser(req, res) {
     _id: user._id,
     fullname: user.fullname,
     username: user.username,
+    isAdmin: user.isAdmin,
   };
   const loginToken = jwt.sign(miniUser, process.env.JWT_SECRET, {
     expiresIn: '2h',

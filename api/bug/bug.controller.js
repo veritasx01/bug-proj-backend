@@ -48,18 +48,18 @@ export async function getBug(req, res) {
 }
 
 export async function removeBug(req, res) {
+  const { bugId } = req.params;
   try {
-    const { bugId } = req.params;
+    const bug = await bugService.getById(bugId);
     const isAdmin = req.user.isAdmin;
-    if (!isAdmin && bug.creator !== req.user._id) {
+    if (!isAdmin && bug.creator._id !== req.user._id) {
       return res.status(403).send({ error: 'Not authorized' });
     }
-    const bug = await getById(bugId);
     if (!bug) return res.status(404).send({ error: 'bug not found' });
     await bugService.remove(bugId);
     res.status(204).send({ message: `bug with id: ${bugId} was removed` });
   } catch (err) {
-    res.status(400).send({ error: `Cannot remove bug, id:(${bugId})` });
+    res.status(400).send({ error: `Cannot remove bug, id:(${bugId}), error: ${err}` });
   }
 }
 

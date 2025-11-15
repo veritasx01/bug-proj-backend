@@ -1,3 +1,5 @@
+import jwt from 'jsonwebtoken';
+
 export function requireAuth(req, res, next) {
   const token = req.cookies.loginToken;
   if (!token) return res.status(401).send({ error: 'Not logged in' });
@@ -7,6 +9,6 @@ export function requireAuth(req, res, next) {
     req.user = user;
     next();
   } catch (err) {
-    res.status(401).send({ error: 'Invalid token' });
+    res.status(401).send({ error: `Invalid token ${err}` });
   }
 }
